@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07152e"><title>Sport Controle</title>
+<link rel="manifest" href="manifest.json">
+<style>
+:root{--bg:#07152e;--panel:#102447;--panel2:#15315b;--blue:#168cff;--green:#20d68a;--muted:#9db2d0;--line:#29466f;--white:#f4f8ff;--red:#ff6377}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#12366b 0,#07152e 42%);font-family:Arial, sans-serif;color:var(--white);min-height:100vh}
+header{padding:22px 18px 16px;background:linear-gradient(120deg,#07152e,#123b72);border-bottom:1px solid #244875}
+.brand{display:flex;align-items:center;gap:12px}.ball{width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,#168cff,#0751b5);display:grid;place-items:center;font-size:24px;box-shadow:0 8px 24px #006bff55}
+h1{font-size:22px;margin:0;letter-spacing:.5px}header p{margin:5px 0 0;color:#b8c9e2;font-size:12px}
+main{max-width:900px;margin:auto;padding:16px}
+.tabs{display:flex;gap:8px;margin:4px 0 18px}.tab{border:1px solid var(--line);background:#0b1e3b;color:#c4d5ec;border-radius:12px;padding:12px 16px;font-weight:700;flex:1;cursor:pointer}.tab.active{background:linear-gradient(120deg,#0877ed,#1456b2);border-color:#268fff;color:white;box-shadow:0 6px 18px #006bff35}
+.hero{background:linear-gradient(135deg,#123d74,#0c2345);border:1px solid #2b568b;border-radius:18px;padding:18px;margin-bottom:14px;position:relative;overflow:hidden}.hero:after{content:"⚽";position:absolute;right:15px;top:12px;font-size:65px;opacity:.10}
+.eyebrow{color:#9dc7f6;font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase}.big{font-size:30px;font-weight:800;margin:8px 0 3px}.sub{color:#bdd0e8;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}.stat{background:linear-gradient(145deg,#10294e,#0c1e39);border:1px solid var(--line);border-radius:15px;padding:15px}.stat span{display:block;color:var(--muted);font-size:11px;margin-bottom:8px}.stat strong{font-size:20px}.green{color:var(--green)}.blue{color:#68b7ff}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin:18px 2px 10px}.section-title h2{font-size:16px;margin:0}.pill{font-size:11px;color:#b9d8ff;background:#12396a;border:1px solid #27558a;padding:6px 9px;border-radius:99px}
+.card{background:#0d2040;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.note{font-size:12px;line-height:1.5;color:#a9bdd8}
+.progress{height:9px;border-radius:20px;background:#233d61;overflow:hidden;margin:10px 0 5px}.progress div{height:100%;background:linear-gradient(90deg,#168cff,#20d68a);width:0%;transition:width .2s}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:15px;background:#0c1e39}
+table{border-collapse:collapse;width:100%;min-width:520px}th{background:#102f5b;color:#dcecff;font-size:11px;text-transform:uppercase;letter-spacing:.5px;padding:13px 9px;text-align:left}td{padding:9px;border-top:1px solid #203b60;font-size:13px}tr.done{background:#0d2e35}tr.done td:first-child{border-left:3px solid var(--green)}.day{font-weight:800;color:#d7e8ff}
+input[type=number]{width:100%;min-width:75px;padding:9px 7px;background:#07172e;border:1px solid #34557f;border-radius:8px;color:white;font-weight:700;font-size:13px}
+.check{appearance:none;width:25px;height:25px;border:2px solid #56769e;border-radius:8px;background:#0a1c37;vertical-align:middle;cursor:pointer;position:relative}.check:checked{background:var(--green);border-color:var(--green)}.check:checked:after{content:"✓";position:absolute;color:#05291d;font-weight:900;left:5px;top:1px;font-size:17px}
+.money{font-weight:800;color:#70bcff}.empty{color:#6f88a9}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.smallbtn{border:1px solid #315782;background:#102e56;color:#d9eaff;border-radius:9px;padding:9px 12px;font-weight:700;cursor:pointer}.smallbtn.danger{border-color:#75404d;color:#ff9aaa;background:#351d2b}
+footer{text-align:center;color:#7189a9;font-size:10px;padding:20px 0 8px}
+.hidden{display:none}
+@media(min-width:650px){.grid{grid-template-columns:repeat(4,1fr)}main{padding:22px}.big{font-size:36px}}
+</style></head>
+<body>
+<header><div class="brand"><div class="ball">⚽</div><div><h1>SPORT CONTROLE</h1><p>SUA PROGRESSÃO • SEU CONTROLE</p></div></div></header>
+<main>
+<nav class="tabs"><button class="tab active" data-tab="home">🏟️ Início</button><button class="tab" data-tab="plan">📋 Projeção 30 dias</button></nav>
+<section id="home">
+<div class="hero"><div class="eyebrow">Painel da progressão</div><div class="big" id="balance">R$ 0,00</div><div class="sub">Retorno projetado ao final do ciclo, se todas as etapas forem concluídas</div></div>
+<div class="grid">
+<div class="stat"><span>ENTRADA INICIAL</span><strong id="initial">R$ 0,00</strong></div>
+<div class="stat"><span>ODD MÉDIA</span><strong class="blue" id="avgOdd">0,00</strong></div>
+<div class="stat"><span>DIAS CONCLUÍDOS</span><strong class="green" id="completed">0/30</strong></div>
+<div class="stat"><span>PROGRESSO</span><strong id="percent">0%</strong></div>
+</div>
+<div class="card"><div class="section-title"><h2>🏆 Evolução do ciclo</h2><span class="pill" id="status">EM ANDAMENTO</span></div><div class="progress"><div id="bar"></div></div><div class="note" id="progressText">Você ainda não marcou nenhum dia como concluído.</div></div>
+<div class="card"><div class="section-title"><h2>Como funciona</h2></div><div class="note">Edite a entrada inicial e as odds na aba Projeção 30 dias. O retorno de cada etapa calcula automaticamente a entrada do dia seguinte. Marque a caixa de cada dia quando concluir sua etapa. Os dados ficam salvos neste aparelho.</div><div class="actions"><button class="smallbtn" onclick="showTab('plan')">Abrir projeção →</button></div></div>
+</section>
+<section id="plan" class="hidden">
+<div class="hero"><div class="eyebrow">Sua tabela de acompanhamento</div><div class="big">30 DIAS</div><div class="sub">Ajuste valores e odds • marque os dias concluídos</div></div>
+<div class="section-title"><h2>Projeção de ganhos</h2><span class="pill">EDIÇÃO LIVRE</span></div>
+<div class="table-wrap"><table><thead><tr><th>Dia</th><th>R$ entrada</th><th>Odd</th><th>Retorno</th><th>Ganhos</th></tr></thead><tbody id="rows"></tbody></table></div>
+<div class="actions"><button class="smallbtn" id="reset">↺ Restaurar valores</button><button class="smallbtn" id="export">⇩ Exportar CSV</button></div>
+<p class="note">Atenção: projeção matemática, não garantia de ganho. Apostas podem resultar em perda de todo o valor investido. Defina limites e não use dinheiro necessário para despesas.</p>
+</section>
+<footer>SPORT CONTROLE • Seus dados ficam salvos neste aparelho</footer>
+</main>
+<script>
+const KEY='sportControle30_v1';const fmt=n=>Number(n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});const defaults={start:87.76,odds:Array(30).fill(1.35),done:Array(30).fill(false)};
+let state=load();
+function load(){try{let x=JSON.parse(localStorage.getItem(KEY));if(x&&x.odds?.length===30&&x.done?.length===30)return x}catch(e){}return structuredClone(defaults)}
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function calc(){let vals=[],entry=Number(state.start)||0;for(let i=0;i<30;i++){let odd=Number(state.odds[i])||0;let ret=entry*odd;vals.push({entry,odd,ret,profit:ret-entry});entry=ret;}return vals}
+function render(){let vals=calc();document.getElementById('rows').innerHTML=vals.map((v,i)=>`<tr class="${state.done[i]?'done':''}"><td class="day">${i+1}º DIA</td><td><input aria-label="Entrada dia ${i+1}" type="number" min="0" step=".01" value="${v.entry.toFixed(2)}" data-entry="${i}" ${i===0?'':'disabled'}></td><td><input aria-label="Odd dia ${i+1}" type="number" min="1" step=".01" value="${v.odd.toFixed(2)}" data-odd="${i}"></td><td class="money">${fmt(v.ret)}</td><td style="text-align:center"><input class="check" type="checkbox" aria-label="Concluído dia ${i+1}" data-done="${i}" ${state.done[i]?'checked':''}></td></tr>`).join('');
+let count=state.done.filter(Boolean).length;let avg=state.odds.reduce((a,b)=>a+(Number(b)||0),0)/30;document.getElementById('balance').textContent=fmt(vals[29].ret);document.getElementById('initial').textContent=fmt(state.start);document.getElementById('avgOdd').textContent=avg.toFixed(2).replace('.',',');document.getElementById('completed').textContent=count+'/30';document.getElementById('percent').textContent=Math.round(count/30*100)+'%';document.getElementById('bar').style.width=(count/30*100)+'%';document.getElementById('status').textContent=count===30?'CICLO CONCLUÍDO':'EM ANDAMENTO';document.getElementById('progressText').textContent=count===0?'Você ainda não marcou nenhum dia como concluído.':`${count} de 30 dias marcados como concluídos.`}
+document.addEventListener('change',e=>{if(e.target.dataset.entry!==undefined){state.start=Math.max(0,Number(e.target.value)||0);save();render()}if(e.target.dataset.odd!==undefined){state.odds[Number(e.target.dataset.odd)]=Math.max(1,Number(e.target.value)||1);save();render()}});
+document.addEventListener('change',e=>{if(e.target.dataset.done!==undefined){state.done[Number(e.target.dataset.done)]=e.target.checked;save();render()}});
+function showTab(tab){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));document.getElementById('home').classList.toggle('hidden',tab!=='home');document.getElementById('plan').classList.toggle('hidden',tab!=='plan')}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+document.getElementById('reset').onclick=()=>{if(confirm('Restaurar a progressão para os valores iniciais?')){state=structuredClone(defaults);save();render()}};
+document.getElementById('export').onclick=()=>{let vals=calc(),csv='Dia;Entrada;Odd;Retorno;Concluido\\n'+vals.map((v,i)=>`${i+1};${v.entry.toFixed(2)};${v.odd.toFixed(2)};${v.ret.toFixed(2)};${state.done[i]?'Sim':'Não'}`).join('\\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='sport-controle-30-dias.csv';a.click();URL.revokeObjectURL(a.href)};
+render();
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script></body></html>
